@@ -4,10 +4,12 @@ class Bullet {
   float lifespan = 90000000;
   boolean alive = true;
   boolean wrapAround = false;
+  boolean bulletType;
   
-  Bullet(float x, float y, float angle) {
+  Bullet(float x, float y, float angle, boolean type) {
     pos = new PVector(x, y);
     vel = PVector.fromAngle(angle).mult(speed);
+    bulletType = type;
   }
 
   void update() {
@@ -20,7 +22,10 @@ class Bullet {
   void show() {
     pushMatrix();
     translate(pos.x, pos.y);
-    stroke(255, 255, 120);
+    if (bulletType)
+      stroke(255, 255, 120);
+    else
+      stroke(255, 120, 120);
     strokeWeight(4);
     point(0, 0);
     popMatrix();
